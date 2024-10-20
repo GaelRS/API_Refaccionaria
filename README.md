@@ -19,4 +19,6 @@ Este proyecto ha sido desarrollado con las siguientes tecnologías:
       
 ## Instalación 🔧
 1) Clonar el repositorio en el directorio de tu preferencia.<br>
-   ``git clone https://github.com/GaelRS/API_Refaccionaria.git`` 
+   ``git clone https://github.com/GaelRS/API_Refaccionaria.git``
+2) Una vez clonado el reposiorio, te iras a la terminal y pondras estos dos comandos.
+   ``pnpm install``
