@@ -18,4 +18,5 @@ Este proyecto ha sido desarrollado con las siguientes tecnologías:
 - [x] 📝 Visual Studio Code - Editor de código.
       
 ## Instalación 🔧
-1. Clonar el repositorio
+1) Clonar el repositorio en el directorio de tu preferencia.<br>
+   ``git clone https://github.com/GaelRS/API_Refaccionaria.git`` 
