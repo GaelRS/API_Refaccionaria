@@ -1,0 +1,498 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "v1",
+    "description": "Documentación de la API sobre una Refaccionaria."
+  },
+  "tags": [
+    {
+      "name": "Piezas",
+      "description": "Operaciones relacionadas con las piezas."
+    },
+    {
+      "name": "Clientes",
+      "description": "Operaciones relacionadas con los clientes."
+    }
+  ],
+  "paths": {
+    "/api/piezas": {
+      "post": {
+        "tags": ["Piezas"],
+        "summary": "Crear una nueva pieza",
+        "parameters": [
+          {
+            "name": "pieza",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "producto": {
+                  "type": "string"
+                },
+                "categoria": {
+                  "type": "string"
+                },
+                "precio": {
+                  "type": "number"
+                },
+                "descripcion": {
+                  "type": "string"
+                },
+                "codigo": {
+                  "type": "string"
+                },
+                "marca": {
+                  "type": "string"
+                },
+                "stock": {
+                  "type": "string"
+                },
+                "modelosVehiculos": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["producto", "categoria", "precio", "descripcion", "codigo", "marca", "stock", "modelosVehiculos"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Pieza creada exitosamente."
+          },
+          "400": {
+            "description": "Código ya existente"
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/piezas/{id}": {
+      "get": {
+        "tags": ["Piezas"],
+        "summary": "Obtener una pieza por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID de la pieza a consultar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalles de la pieza."
+          },
+          "404": {
+            "description": "Pieza no encontrada"
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/piezas/categoria/{categoria}": {
+      "get": {
+        "tags": ["Piezas"],
+        "summary": "Obtener piezas por categoría con paginación y ordenamiento",
+        "parameters": [
+          {
+            "name": "categoria",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "La categoría de las piezas a consultar"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Número de la página a consultar"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Número de elementos por página"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": ["nombre", "precio"],
+            "description": "Campo por el cual ordenar: 'nombre' (descendente) o 'precio' (ascendente)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de piezas de la categoría solicitada, con paginación y ordenamiento."
+          },
+          "404": {
+            "description": "Categoría no encontrada"
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/piezas/update/{id}": {
+      "put": {
+        "tags": ["Piezas"],
+        "summary": "Actualizar una pieza por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID de la pieza a actualizar"
+          },
+          {
+            "name": "pieza",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "producto": {
+                  "type": "string"
+                },
+                "categoria": {
+                  "type": "string"
+                },
+                "precio": {
+                  "type": "number"
+                },
+                "descripcion": {
+                  "type": "string"
+                },
+                "codigo": {
+                  "type": "string"
+                },
+                "marca": {
+                  "type": "string"
+                },
+                "stock": {
+                  "type": "string"
+                },
+                "modelosVehiculos": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["producto", "categoria", "precio", "descripcion", "codigo", "marca", "stock", "modelosVehiculos"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pieza actualizada exitosamente."
+          },
+          "400": {
+            "description": "Código ya existente"
+          },
+          "404": {
+            "description": "Pieza no encontrada"
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/piezas/updatePatch/{id}": {
+      "patch": {
+        "tags": ["Piezas"],
+        "summary": "Actualizar parcialmente una pieza por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID de la pieza a actualizar"
+          },
+          {
+            "name": "pieza",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "producto": { "type": "string" },
+                "categoria": { "type": "string" },
+                "precio": { "type": "number" },
+                "descripcion": { "type": "string" },
+                "codigo": { "type": "string" },
+                "marca": { "type": "string" },
+                "stock": { "type": "string" },
+                "modelosVehiculos": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pieza actualizada exitosamente."
+          },
+          "400": {
+            "description": "Código ya existente."
+          },
+          "404": {
+            "description": "Pieza no encontrada."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/piezas/delete/{id}": {
+      "delete": {
+        "tags": ["Piezas"],
+        "summary": "Borrar una pieza por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID de la pieza a borrar"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pieza Borrada."
+          },
+          "404": {
+            "description": "Pieza no encontrada."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/clientes": {
+      "post": {
+        "tags": ["Clientes"],
+        "summary": "Dar de alta un nuevo cliente",
+        "parameters": [
+          {
+            "name": "cliente",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string"
+                },
+                "correo": {
+                  "type": "string"
+                },
+                "telefono": {
+                  "type": "string"
+                },
+                "productosComprados": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["nombre", "correo", "telefono", "productosComprados"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Cliente dado de alta exitosamente."
+          },
+          "400": {
+            "description": "Cliente con correo ya existente."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/clientes/{id}": {
+      "get": {
+        "tags": ["Clientes"],
+        "summary": "Obtener una cliente por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID del cliente a consultar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalles del cliente."
+          },
+          "404": {
+            "description": "Cliente no encontrado."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/clientes/update/{id}": {
+      "put": {
+        "tags": ["Clientes"],
+        "summary": "Actualizar un cliente por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID del cliente a actualizar"
+          },
+          {
+            "name": "pieza",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string"
+                },
+                "correo": {
+                  "type": "string"
+                },
+                "telefono": {
+                  "type": "string"
+                },
+                "productosComprados": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["nombre", "correo", "telefono", "productosComprados"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente actualizado exitosamente."
+          },
+          "400": {
+            "description": "Correo ya existente."
+          },
+          "404": {
+            "description": "Cliente no encontrado."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/clientes/updatePatch/{id}": {
+      "patch": {
+        "tags": ["Clientes"],
+        "summary": "Actualizar  solo algunos campos de un cliente por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID del cliente a actualizar"
+          },
+          {
+            "name": "pieza",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": { "type": "string" },
+                "correo": { "type": "string" },
+                "telefono": { "type": "string" },
+                "productosComprados": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente actualizado exitosamente."
+          },
+          "400": {
+            "description": "Correo ya existente."
+          },
+          "404": {
+            "description": "Cliente no encontrado."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    },
+    "/api/clientes/delete/{id}": {
+      "delete": {
+        "tags": ["Clientes"],
+        "summary": "Borrar un Cliente por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "El ID del cliente a borrar"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Cliente Borrado."
+          },
+          "404": {
+            "description": "Cliente no encontrado."
+          },
+          "500": {
+            "description": "Error en el servidor."
+          }
+        }
+      }
+    }
+
+
+  }
+}

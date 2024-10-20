@@ -1,0 +1,31 @@
+{
+  "name": "refaccionaria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.7.5",
+    "@types/swagger-ui-express": "^4.1.6",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@types/redis": "^4.0.11",
+    "express": "^4.21.1",
+    "ioredis": "^5.4.1",
+    "mongoose": "^8.7.1",
+    "redis": "^4.7.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
