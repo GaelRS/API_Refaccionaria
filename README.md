@@ -18,7 +18,25 @@ Este proyecto ha sido desarrollado con las siguientes tecnologías:
 - [x] 📝 Visual Studio Code - Editor de código.
       
 ## Instalación 🔧
-1) Clonar el repositorio en el directorio de tu preferencia.<br>
-   ``git clone https://github.com/GaelRS/API_Refaccionaria.git``
-2) Una vez clonado el reposiorio, te iras a la terminal y pondras estos dos comandos.
-   ``pnpm install``
+- ⚙️ Configuración inicial<br>
+      1. Clonar el repositorio en el directorio de tu preferencia.<br>
+         ``git clone https://github.com/GaelRS/API_Refaccionaria.git``<br>
+      2. Una vez que haya clonado el repositorio, dirígete a la terminal y ejecuta el siguiente comando.<br>
+         ``pnpm install``<br>
+         
+- 🐳 Configuración de Contenedores
+    - 1.crear contenedor que contiene la BD de Mongo.<br>
+        ``docker run --name Refaccionaria -p 27017:27017 -v refaccionaria:/data/db -d mongo``
+      
+        - 1.1 Verificar que el sistema esté en ejecución. A continuación, abre DataGrip y crea una nueva fuente de datos (Data Source) para MongoDB. Luego, introduce el siguiente script.
+          ```bash
+          use Refaccionaria
+          
+          db.createCollection("Piezas");
+          db.createCollection("Clientes");
+
+          db.Piezas
+          ```
+          
+
+  
