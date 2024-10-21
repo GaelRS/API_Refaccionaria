@@ -37,6 +37,8 @@ Este proyecto ha sido desarrollado con las siguientes tecnologías:
 
           db.Piezas
           ```
+  - 2.Crear el contenedor de la API.<br>
+    ``docker run --name Refaccionariad -p 3000:3000 refaccionaria``
           
 
   
